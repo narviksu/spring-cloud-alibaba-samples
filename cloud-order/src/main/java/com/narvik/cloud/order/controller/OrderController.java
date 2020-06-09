@@ -4,8 +4,6 @@ import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.narvik.cloud.base.BaseController;
 import com.narvik.cloud.common.entity.CommonResult;
 import com.narvik.cloud.common.entity.Order;
-import com.narvik.cloud.common.sentinel.CommonBlockHandler;
-import com.narvik.cloud.common.sentinel.CommonFallback;
 import com.narvik.cloud.order.service.ProductService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,7 +22,7 @@ public class OrderController extends BaseController {
     private ProductService productService;
 
     @GetMapping(value = "/order/{id}")
-    @SentinelResource(value = "order", blockHandlerClass = CommonBlockHandler.class, blockHandler = "handleException", fallbackClass = CommonFallback.class, fallback = "fallback")
+    @SentinelResource(value = "order", blockHandlerClass = OrderHandler.class, blockHandler = "handleOrder", fallbackClass = OrderHandler.class, fallback = "fallbackOrder")
     public CommonResult<Order> order(@PathVariable("id") Long id) {
         Order order = new Order();
         order.setId(id);
