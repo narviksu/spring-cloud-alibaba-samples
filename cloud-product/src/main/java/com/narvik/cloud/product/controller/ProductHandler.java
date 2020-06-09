@@ -3,6 +3,7 @@ package com.narvik.cloud.product.controller;
 import com.alibaba.csp.sentinel.slots.block.BlockException;
 import com.narvik.cloud.common.entity.CommonResult;
 import com.narvik.cloud.common.entity.Product;
+import com.narvik.cloud.constant.ResponseCode;
 
 /**
  * @Author narvik
@@ -12,11 +13,11 @@ import com.narvik.cloud.common.entity.Product;
 public class ProductHandler {
 
     public static CommonResult<Product> handleProduct(Long id, BlockException exception) {
-        return new CommonResult<>(50010, "handleProduct", null);
+        return new CommonResult<>(ResponseCode.BLOCK_ERROR, "handleProduct", null);
     }
 
     public static CommonResult<Product> fallbackProduct(Long id, Throwable throwable) {
-        return new CommonResult<>(50020, "fallbackProduct", null);
+        return new CommonResult<>(ResponseCode.FALLBACK_ERROR, "fallbackProduct", null);
     }
 
 }
