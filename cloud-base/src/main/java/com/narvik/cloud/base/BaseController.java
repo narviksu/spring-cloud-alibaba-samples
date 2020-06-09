@@ -28,13 +28,18 @@ public abstract class BaseController {
     @GetMapping(value = "/connection/{nextAppName}")
     public CommonResult<String> connection(@PathVariable("nextAppName") String nextAppName) {
         if (nextAppName.equals(appName)) {
-            return new CommonResult<>(50500, "recycle connect error", null);
-        } else if (nextAppName.equals("end")) {
+            //延迟，进行响应时间相关的熔断测试
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             return new CommonResult<>("connect success");
         } else {
-            String url = "http://" + nextAppName + "/connection/end";
+            //当路由为 appName/connection/appName 这种连接自身的情况定义为不再连接新的服务
+            String url = "http://" + nextAppName + "/connection/" + nextAppName;
             CommonResult<?> targetResult = restTemplate.getForObject(url, CommonResult.class);
-            String data = targetResult.getData() == null ? "" : targetResult.getData().toString();
+            String data = targetResult == null || targetResult.getData() == null ? "" : targetResult.getData().toString();
             return new CommonResult<>(appName + " -> " + nextAppName + " : " + data);
         }
     }
