@@ -4,9 +4,12 @@ import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.narvik.cloud.base.BaseController;
 import com.narvik.cloud.common.entity.CommonResult;
 import com.narvik.cloud.common.entity.Product;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import com.narvik.cloud.common.entity.dto.ProductStockUpdateDto;
+import com.narvik.cloud.constant.TestResources;
+import com.narvik.cloud.product.service.ProductService;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
 
 /**
  * @Author narvik
@@ -14,18 +17,30 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class ProductController extends BaseController {
+    @Resource
+    ProductService productService;
 
     @GetMapping(value = "/product/{id}")
-    @SentinelResource(value = "product", blockHandlerClass = ProductHandler.class, blockHandler = "handleProduct", fallbackClass = ProductHandler.class, fallback = "fallbackProduct")
-    public CommonResult<Product> product(@PathVariable("id") Long id) {
+    @SentinelResource(value = "getProduct", blockHandlerClass = ProductResourceHandler.class, blockHandler = "handleGetProduct", fallbackClass = ProductResourceHandler.class, fallback = "fallbackGetProduct")
+    public CommonResult<Product> getProduct(@PathVariable("id") String id) {
         //测试sentinel fallback
-        if (id > 3) {
-            throw new IllegalArgumentException("error");
+        if ("0".equals(id)) {
+            throw new IllegalArgumentException("test error");
         }
-        Product product = new Product();
-        product.setId(id);
-        product.setName("cola");
-        return new CommonResult<Product>(200, "success", product);
+        Product product = TestResources.TEST_PRODUCTS.get(id);
+        return new CommonResult<>(200, "success", product);
+    }
+
+    /**
+     * 更新商品库存
+     *
+     * @param dto 更新商品库存参数，详情看class
+     * @return 提示信息
+     */
+    @PutMapping(value = "/product/stock")
+    @SentinelResource(value = "updateProductStock", blockHandlerClass = ProductResourceHandler.class, blockHandler = "handleUpdateProductStock", fallbackClass = ProductResourceHandler.class, fallback = "fallbackUpdateProductStock")
+    public CommonResult<String> updateProductStock(@RequestBody ProductStockUpdateDto dto) {
+        return new CommonResult<>(productService.updateProductStock(dto.getUserId(), dto.getStockChangeMap()));
     }
 
 }

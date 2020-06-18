@@ -4,10 +4,10 @@ import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.narvik.cloud.base.BaseController;
 import com.narvik.cloud.common.entity.CommonResult;
 import com.narvik.cloud.common.entity.Order;
-import com.narvik.cloud.order.service.ProductService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import com.narvik.cloud.common.entity.dto.OrderCreateDto;
+import com.narvik.cloud.order.remote.ProductService;
+import com.narvik.cloud.order.service.OrderService;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -20,15 +20,35 @@ import java.util.ArrayList;
 public class OrderController extends BaseController {
     @Resource
     private ProductService productService;
+    @Resource
+    private OrderService orderService;
 
+    /**
+     * 根据订单id获取指定的订单
+     *
+     * @param id 订单id
+     * @return 订单实体
+     */
     @GetMapping(value = "/order/{id}")
-    @SentinelResource(value = "order", blockHandlerClass = OrderHandler.class, blockHandler = "handleOrder", fallbackClass = OrderHandler.class, fallback = "fallbackOrder")
-    public CommonResult<Order> order(@PathVariable("id") Long id) {
+    @SentinelResource(value = "getOrder", blockHandlerClass = OrderResourceHandler.class, blockHandler = "handleGetOrder", fallbackClass = OrderResourceHandler.class, fallback = "fallbackGetOrder")
+    public CommonResult<Order> getOrder(@PathVariable("id") String id) {
         Order order = new Order();
         order.setId(id);
         order.setProductList(new ArrayList<>());
         order.getProductList().add(productService.product(id).getData());
         return new CommonResult<>(order);
+    }
+
+    /**
+     * 创建订单
+     *
+     * @param dto 创建订单所需参数，详情看class
+     * @return 创建的订单相关信息
+     */
+    @PostMapping(value = "/order")
+    @SentinelResource(value = "createOrder", blockHandlerClass = OrderResourceHandler.class, blockHandler = "handleCreateOrder", fallbackClass = OrderResourceHandler.class, fallback = "fallbackCreateOrder")
+    public CommonResult<Order> createOrder(@RequestBody OrderCreateDto dto) {
+        return new CommonResult<>(orderService.createOrder(dto.getUserId(), dto.getProductIds()));
     }
 
 }

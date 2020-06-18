@@ -1,17 +1,8 @@
 server:
-  port: 8021
+  port: 8011
 spring:
   application:
-    name: order
-  datasource:
-    druid:
-      url: jdbc:mysql://localhost:3306/sample_order?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&rewriteBatchedStatements=true&allowMultiQueries=true&autoReconnect=true&useSSL=false
-      username: root
-      password: root
-      driver-class-name: com.mysql.jdbc.Driver
-      initialSize: 5
-      max-active: 150
-      max-wait: 60000
+    name: index
   cloud:
     nacos:
       discovery:

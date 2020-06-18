@@ -1,8 +1,17 @@
 server:
-  port: 8081
+  port: 8031
 spring:
   application:
     name: product
+  datasource:
+    druid:
+      url: jdbc:mysql://localhost:3306/sample_product?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&rewriteBatchedStatements=true&allowMultiQueries=true&autoReconnect=true&useSSL=false
+      username: root
+      password: root
+      driver-class-name: com.mysql.jdbc.Driver
+      initialSize: 5
+      max-active: 150
+      max-wait: 60000
   cloud:
     nacos:
       discovery:
@@ -13,7 +22,32 @@ spring:
     sentinel:
       transport:
         dashboard: localhost:8080 #配置Sentinel dashboard地址
-
+seata:
+  enabled: true
+  # 应用 id 为唯一便于区分
+  application-id: order
+  # 事务分组，这个是默认分组
+  tx-service-group: my_test_tx_group
+  config:
+    type: nacos
+    nacos:
+      namespace:
+      serverAddr: 127.0.0.1:8848
+      group: SEATA_GROUP
+      userName: "nacos"
+      password: "nacos"
+  registry:
+    type: nacos
+    nacos:
+      application: seata-server
+      server-addr: 127.0.0.1:8848
+      namespace:
+      userName: "nacos"
+      password: "nacos"
+logging:
+  level:
+    io:
+      seata: info
 management:
   endpoints:
     web:

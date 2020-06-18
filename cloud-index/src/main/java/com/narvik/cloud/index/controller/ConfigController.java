@@ -1,6 +1,6 @@
-package com.narvik.cloud.order.controller;
+package com.narvik.cloud.index.controller;
 
-import org.springframework.beans.factory.annotation.Value;
+import com.narvik.cloud.common.entity.CommonResult;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,11 +12,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RefreshScope
 public class ConfigController {
+    //需要搭建nacos后自己根据官方文档录入config.message才能测试
     //@Value("${config.message}")
     private String configMessage;
 
+    /**
+     * 测试nacos-config
+     *
+     * @return
+     */
     @GetMapping("/config/message")
-    public String configMessage() {
-        return configMessage;
+    public CommonResult<String> configMessage() {
+        return new CommonResult<>(configMessage);
     }
 }

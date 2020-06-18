@@ -1,6 +1,5 @@
-package com.narvik.cloud.order;
+package com.narvik.cloud.index;
 
-import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -13,7 +12,6 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableDiscoveryClient
 @SpringBootApplication
 @EnableFeignClients
-@MapperScan("com.narvik.cloud.order.mapper")
 public class Application {
 
     public static void main(String[] args) {
