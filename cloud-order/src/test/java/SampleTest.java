@@ -1,4 +1,4 @@
-import com.narvik.cloud.common.entity.Order;
+import com.narvik.common.entity.Order;
 import com.narvik.cloud.order.Application;
 import com.narvik.cloud.order.dao.OrderDao;
 import org.junit.Assert;
@@ -16,7 +16,7 @@ import java.util.List;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
-public class DaoTest {
+public class SampleTest {
     @Resource
     private OrderDao orderDao;
 

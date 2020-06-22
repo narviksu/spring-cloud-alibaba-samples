@@ -1,6 +1,6 @@
 package com.narvik.cloud.index.controller;
 
-import com.narvik.cloud.common.entity.CommonResult;
+import com.narvik.common.entity.CommonResult;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

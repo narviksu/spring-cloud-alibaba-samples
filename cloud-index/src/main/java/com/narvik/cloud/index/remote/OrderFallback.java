@@ -1,8 +1,9 @@
 package com.narvik.cloud.index.remote;
 
-import com.narvik.cloud.common.entity.CommonResult;
-import com.narvik.cloud.common.entity.dto.ProductStockUpdateDto;
-import com.narvik.cloud.constant.ResponseCode;
+import com.narvik.common.entity.CommonResult;
+import com.narvik.common.entity.Order;
+import com.narvik.common.entity.dto.OrderCreateDto;
+import com.narvik.common.constant.ResponseCode;
 import org.springframework.stereotype.Component;
 
 /**
@@ -11,11 +12,10 @@ import org.springframework.stereotype.Component;
  * feign远程调用的兜底方案，跟sentinel不一样的需要注意
  */
 @Component
-public class OrderFallback implements ProductService {
+public class OrderFallback implements OrderService {
 
     @Override
-    public CommonResult<String> updateProductStock(ProductStockUpdateDto dto) {
-        return new CommonResult<>(ResponseCode.FEIGN_FALLBACK_ERROR, "服务降级返回", null);
+    public CommonResult<Order> createOrder(OrderCreateDto dto) {
+        return new CommonResult<>(ResponseCode.FEIGN_FALLBACK_ERROR, "feign fallback", false, null);
     }
-
 }

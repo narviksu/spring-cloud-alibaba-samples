@@ -1,7 +1,7 @@
 package com.narvik.cloud.order.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.narvik.cloud.common.entity.Order;
+import com.narvik.common.entity.Order;
 
 /**
  * @Author narvik

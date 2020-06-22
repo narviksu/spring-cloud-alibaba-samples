@@ -1,6 +1,6 @@
-package com.narvik.cloud.base;
+package com.narvik.common.base;
 
-import com.narvik.cloud.common.entity.CommonResult;
+import com.narvik.common.entity.CommonResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;

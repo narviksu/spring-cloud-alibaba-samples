@@ -1,4 +1,4 @@
-package com.narvik.cloud.common.entity.dto;
+package com.narvik.common.entity.dto;
 
 import java.util.Map;
 

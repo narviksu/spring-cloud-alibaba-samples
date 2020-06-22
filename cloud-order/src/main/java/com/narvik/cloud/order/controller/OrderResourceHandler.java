@@ -1,10 +1,10 @@
 package com.narvik.cloud.order.controller;
 
 import com.alibaba.csp.sentinel.slots.block.BlockException;
-import com.narvik.cloud.common.entity.CommonResult;
-import com.narvik.cloud.common.entity.Order;
-import com.narvik.cloud.common.entity.dto.OrderCreateDto;
-import com.narvik.cloud.constant.ResponseCode;
+import com.narvik.common.entity.CommonResult;
+import com.narvik.common.entity.Order;
+import com.narvik.common.entity.dto.OrderCreateDto;
+import com.narvik.common.constant.ResponseCode;
 
 /**
  * @Author narvik
@@ -15,19 +15,19 @@ import com.narvik.cloud.constant.ResponseCode;
 public class OrderResourceHandler {
 
     public static CommonResult<Order> handleGetOrder(String id, BlockException exception) {
-        return new CommonResult<>(ResponseCode.BLOCK_ERROR, "handle", null);
+        return new CommonResult<>(ResponseCode.BLOCK_ERROR, "handle", false, null);
     }
 
     public static CommonResult<Order> fallbackGetOrder(String id, Throwable throwable) {
-        return new CommonResult<>(ResponseCode.FALLBACK_ERROR, "fallback", null);
+        return new CommonResult<>(ResponseCode.FALLBACK_ERROR, "fallback", false, null);
     }
 
     public static CommonResult<Order> handleCreateOrder(OrderCreateDto dto, BlockException exception) {
-        return new CommonResult<>(ResponseCode.BLOCK_ERROR, "handle", null);
+        return new CommonResult<>(ResponseCode.BLOCK_ERROR, "handle", false, null);
     }
 
     public static CommonResult<Order> fallbackCreateOrder(OrderCreateDto dto, Throwable throwable) {
-        return new CommonResult<>(ResponseCode.FALLBACK_ERROR, "fallback", null);
+        return new CommonResult<>(ResponseCode.FALLBACK_ERROR, "fallback", false, null);
     }
 
 

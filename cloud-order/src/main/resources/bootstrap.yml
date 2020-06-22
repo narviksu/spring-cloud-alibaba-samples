@@ -5,7 +5,7 @@ spring:
     name: order
   datasource:
     druid:
-      url: jdbc:mysql://localhost:3306/sample_order?useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&rewriteBatchedStatements=true&allowMultiQueries=true&autoReconnect=true&useSSL=false
+      url: jdbc:mysql://localhost:3306/sample_order?serverTimezone=GMT&useUnicode=true&characterEncoding=UTF-8&zeroDateTimeBehavior=convertToNull&allowMultiQueries=true&rewriteBatchedStatements=true&allowMultiQueries=true&autoReconnect=true&useSSL=false
       username: root
       password: root
       driver-class-name: com.mysql.jdbc.Driver
@@ -24,6 +24,7 @@ spring:
         dashboard: localhost:8080 #配置Sentinel dashboard地址
 seata:
   enabled: true
+  enable-auto-data-source-proxy: false
   # 应用 id 为唯一便于区分
   application-id: order
   # 事务分组，这个是默认分组

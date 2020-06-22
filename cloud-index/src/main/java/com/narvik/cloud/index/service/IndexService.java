@@ -8,6 +8,6 @@ import java.util.Map;
  */
 public interface IndexService {
 
-    String purchase(String userId, Map<String, Integer> stockChangeMap);
+    String purchase(String userId, Map<String, Integer> productDetailMap);
 
 }

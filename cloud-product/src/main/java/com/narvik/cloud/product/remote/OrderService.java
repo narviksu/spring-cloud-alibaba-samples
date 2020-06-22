@@ -1,6 +1,6 @@
 package com.narvik.cloud.product.remote;
 
-import com.narvik.cloud.common.entity.CommonResult;
+import com.narvik.common.entity.CommonResult;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 

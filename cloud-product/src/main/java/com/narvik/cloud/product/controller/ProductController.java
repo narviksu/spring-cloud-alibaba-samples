@@ -1,11 +1,11 @@
 package com.narvik.cloud.product.controller;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
-import com.narvik.cloud.base.BaseController;
-import com.narvik.cloud.common.entity.CommonResult;
-import com.narvik.cloud.common.entity.Product;
-import com.narvik.cloud.common.entity.dto.ProductStockUpdateDto;
-import com.narvik.cloud.constant.TestResources;
+import com.narvik.common.base.BaseController;
+import com.narvik.common.entity.CommonResult;
+import com.narvik.common.entity.Product;
+import com.narvik.common.entity.dto.ProductStockUpdateDto;
+import com.narvik.common.constant.TestResources;
 import com.narvik.cloud.product.service.ProductService;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +28,7 @@ public class ProductController extends BaseController {
             throw new IllegalArgumentException("test error");
         }
         Product product = TestResources.TEST_PRODUCTS.get(id);
-        return new CommonResult<>(200, "success", product);
+        return new CommonResult<>(product);
     }
 
     /**

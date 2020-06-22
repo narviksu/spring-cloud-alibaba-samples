@@ -1,10 +1,10 @@
 package com.narvik.cloud.product.controller;
 
 import com.alibaba.csp.sentinel.slots.block.BlockException;
-import com.narvik.cloud.common.entity.CommonResult;
-import com.narvik.cloud.common.entity.Product;
-import com.narvik.cloud.common.entity.dto.ProductStockUpdateDto;
-import com.narvik.cloud.constant.ResponseCode;
+import com.narvik.common.entity.CommonResult;
+import com.narvik.common.entity.Product;
+import com.narvik.common.entity.dto.ProductStockUpdateDto;
+import com.narvik.common.constant.ResponseCode;
 
 /**
  * @Author narvik
@@ -15,19 +15,19 @@ import com.narvik.cloud.constant.ResponseCode;
 public class ProductResourceHandler {
 
     public static CommonResult<Product> handleGetProduct(String id, BlockException exception) {
-        return new CommonResult<>(ResponseCode.BLOCK_ERROR, "handle", null);
+        return new CommonResult<>(ResponseCode.BLOCK_ERROR, "handle",false, null);
     }
 
     public static CommonResult<Product> fallbackGetProduct(String id, Throwable throwable) {
-        return new CommonResult<>(ResponseCode.FALLBACK_ERROR, "fallback", null);
+        return new CommonResult<>(ResponseCode.FALLBACK_ERROR, "fallback", false,null);
     }
 
 
     public static CommonResult<String> handleUpdateProductStock(ProductStockUpdateDto dto, BlockException exception) {
-        return new CommonResult<>(ResponseCode.BLOCK_ERROR, "handle", null);
+        return new CommonResult<>(ResponseCode.BLOCK_ERROR, "handle", false,null);
     }
 
     public static CommonResult<String> fallbackUpdateProductStock(ProductStockUpdateDto dto, Throwable throwable) {
-        return new CommonResult<>(ResponseCode.FALLBACK_ERROR, "fallback", null);
+        return new CommonResult<>(ResponseCode.FALLBACK_ERROR, "fallback", false,null);
     }
 }

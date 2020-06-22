@@ -1,9 +1,9 @@
 package com.narvik.cloud.index.controller;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
-import com.narvik.cloud.base.BaseController;
-import com.narvik.cloud.common.entity.CommonResult;
-import com.narvik.cloud.common.entity.dto.PurchaseDto;
+import com.narvik.common.base.BaseController;
+import com.narvik.common.entity.CommonResult;
+import com.narvik.common.entity.dto.PurchaseDto;
 import com.narvik.cloud.index.service.IndexService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

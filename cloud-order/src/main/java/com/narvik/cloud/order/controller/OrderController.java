@@ -1,10 +1,10 @@
 package com.narvik.cloud.order.controller;
 
 import com.alibaba.csp.sentinel.annotation.SentinelResource;
-import com.narvik.cloud.base.BaseController;
-import com.narvik.cloud.common.entity.CommonResult;
-import com.narvik.cloud.common.entity.Order;
-import com.narvik.cloud.common.entity.dto.OrderCreateDto;
+import com.narvik.common.base.BaseController;
+import com.narvik.common.entity.CommonResult;
+import com.narvik.common.entity.Order;
+import com.narvik.common.entity.dto.OrderCreateDto;
 import com.narvik.cloud.order.remote.ProductService;
 import com.narvik.cloud.order.service.OrderService;
 import org.springframework.web.bind.annotation.*;
@@ -48,7 +48,7 @@ public class OrderController extends BaseController {
     @PostMapping(value = "/order")
     @SentinelResource(value = "createOrder", blockHandlerClass = OrderResourceHandler.class, blockHandler = "handleCreateOrder", fallbackClass = OrderResourceHandler.class, fallback = "fallbackCreateOrder")
     public CommonResult<Order> createOrder(@RequestBody OrderCreateDto dto) {
-        return new CommonResult<>(orderService.createOrder(dto.getUserId(), dto.getProductIds()));
+        return new CommonResult<>(orderService.createOrder(dto.getUserId(), dto.getProductDetailMap()));
     }
 
 }

@@ -1,8 +1,8 @@
 package com.narvik.cloud.order.service;
 
-import com.narvik.cloud.common.entity.Order;
+import com.narvik.common.entity.Order;
 
-import java.util.List;
+import java.util.Map;
 
 /**
  * @Author narvik
@@ -10,6 +10,6 @@ import java.util.List;
  */
 public interface OrderService {
 
-    Order createOrder(String userId, List<String> productIds);
+    Order createOrder(String userId, Map<String, Integer> productDetailMap);
 
 }

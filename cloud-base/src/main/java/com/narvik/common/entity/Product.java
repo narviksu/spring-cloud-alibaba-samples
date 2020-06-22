@@ -1,6 +1,8 @@
-package com.narvik.cloud.common.entity;
+package com.narvik.common.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+
+import java.math.BigDecimal;
 
 /**
  * @Author narvik
@@ -10,13 +12,17 @@ import com.baomidou.mybatisplus.annotation.TableName;
 public class Product {
     private String id;
     private String name;
+    private BigDecimal price;
+    private Integer stock;
 
     public Product() {
     }
 
-    public Product(String id, String name) {
+    public Product(String id, String name, BigDecimal price, Integer stock) {
         this.id = id;
         this.name = name;
+        this.price = price;
+        this.stock = stock;
     }
 
     public String getId() {
@@ -35,4 +41,19 @@ public class Product {
         this.name = name;
     }
 
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public Integer getStock() {
+        return stock;
+    }
+
+    public void setStock(Integer stock) {
+        this.stock = stock;
+    }
 }

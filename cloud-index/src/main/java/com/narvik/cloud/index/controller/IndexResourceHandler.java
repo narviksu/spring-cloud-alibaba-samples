@@ -1,9 +1,9 @@
 package com.narvik.cloud.index.controller;
 
 import com.alibaba.csp.sentinel.slots.block.BlockException;
-import com.narvik.cloud.common.entity.CommonResult;
-import com.narvik.cloud.common.entity.dto.PurchaseDto;
-import com.narvik.cloud.constant.ResponseCode;
+import com.narvik.common.entity.CommonResult;
+import com.narvik.common.entity.dto.PurchaseDto;
+import com.narvik.common.constant.ResponseCode;
 
 /**
  * @Author narvik
@@ -14,11 +14,11 @@ import com.narvik.cloud.constant.ResponseCode;
 public class IndexResourceHandler {
 
     public static CommonResult<String> handlePurchase(PurchaseDto dto, BlockException exception) {
-        return new CommonResult<>(ResponseCode.BLOCK_ERROR, "handlePurchase", null);
+        return new CommonResult<>(ResponseCode.BLOCK_ERROR, "handle", false, null);
     }
 
     public static CommonResult<String> fallbackPurchase(PurchaseDto dto, Throwable throwable) {
-        return new CommonResult<>(ResponseCode.FALLBACK_ERROR, "fallbackPurchase", null);
+        return new CommonResult<>(ResponseCode.FALLBACK_ERROR, "fallback", false, null);
     }
 
 

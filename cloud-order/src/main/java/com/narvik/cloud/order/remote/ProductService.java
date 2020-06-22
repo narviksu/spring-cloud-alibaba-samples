@@ -1,7 +1,7 @@
 package com.narvik.cloud.order.remote;
 
-import com.narvik.cloud.common.entity.CommonResult;
-import com.narvik.cloud.common.entity.Product;
+import com.narvik.common.entity.CommonResult;
+import com.narvik.common.entity.Product;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

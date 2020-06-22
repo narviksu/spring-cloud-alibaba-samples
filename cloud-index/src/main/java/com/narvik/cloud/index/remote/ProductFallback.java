@@ -1,8 +1,8 @@
 package com.narvik.cloud.index.remote;
 
-import com.narvik.cloud.common.entity.CommonResult;
-import com.narvik.cloud.common.entity.dto.ProductStockUpdateDto;
-import com.narvik.cloud.constant.ResponseCode;
+import com.narvik.common.entity.CommonResult;
+import com.narvik.common.entity.dto.ProductStockUpdateDto;
+import com.narvik.common.constant.ResponseCode;
 import org.springframework.stereotype.Component;
 
 /**
@@ -15,7 +15,7 @@ public class ProductFallback implements ProductService {
 
     @Override
     public CommonResult<String> updateProductStock(ProductStockUpdateDto dto) {
-        return new CommonResult<>(ResponseCode.FEIGN_FALLBACK_ERROR, "服务降级返回", null);
+        return new CommonResult<>(ResponseCode.FEIGN_FALLBACK_ERROR, "feign fallback", false,null);
     }
 
 }

@@ -1,11 +1,15 @@
 package com.narvik.cloud.product.dao;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.narvik.cloud.common.entity.Product;
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.narvik.cloud.product.mapper.ProductMapper;
+import com.narvik.common.entity.Product;
+import org.springframework.stereotype.Component;
 
 /**
  * @Author narvik
  * @Date 2020/6/18 22:24
  */
-public interface ProductDao extends BaseMapper<Product> {
+@Component
+public class ProductDao extends ServiceImpl<ProductMapper, Product> implements IService<Product> {
 }
