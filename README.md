@@ -1,5 +1,6 @@
 # spring-cloud-alibaba-samples
-spring cloud alibaba
+重新整理的spring cloud alibaba框架搭建
+
 * 基础核心spring cloud
 * 注册中心nacos
 * 通讯openfeign
